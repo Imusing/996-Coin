@@ -968,11 +968,11 @@ int64_t GetProofOfWorkReward(int64_t nFees)
 {
     int64_t nSubsidy = 0 * COIN;
     
- if (pindexBest->nHeight < 100)
+    if (pindexBest->nHeight < 100)
     {
-      nSubsidy = 10000 * COIN;
-      return nSubsidy + nFees;
-}
+       nSubsidy = 996 * COIN;
+       return nSubsidy + nFees;
+    }
 
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfWorkReward() : create=%s nSubsidy=%" PRId64 "\n", FormatMoney(nSubsidy).c_str(), nSubsidy);
