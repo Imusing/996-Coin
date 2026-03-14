@@ -1,96 +1,74 @@
 # 996 Coin
 
 996 Coin is a cryptocurrency developed by the HCC Community (see hashcashfaucet.com)
+This repository contains the core node, CLI tools, wallet tooling, and Qt desktop wallet sources.
 
-<!-- # 2x2coin
+## Project Status
 
+This project is in active fork/customization state. Some codebase and build-system elements still reflect upstream Bitcoin PoS ancestry while chain parameters and network identity have been customized for 996-Coin.
 
-https://2x2coin.space     Official Website
-http://2x2block.space     ( Blockexplorer including API )
+That means this repository should currently be treated as a development fork, not as a polished end-user release.
 
-Windows wallet https://github.com/2X2coin/2x2coin/raw/master/release/2X2-qt.exe
+## Important Note
 
-## How to compile and use the Linux Deamon
-Tested and working on Ubtunu 14 - 16.04 and 17.  Version 16.04 is recommended.
-Versions 18.04 and later do not currently compile due to changes in OpenSSL 1.1
-and the Boost C++ library in that version.
+This project is derived from upstream Bitcoin Core / Bitcoin PoS lineage. As with many cryptocurrency forks, inherited naming, comments, scripts, and documentation may still exist in parts of the codebase. Ongoing cleanup and verification are expected parts of development.
 
-### Swapfile
+Do not assume all documentation, filenames, or build artifacts are fully rebranded until they have been reviewed.
 
-You can check if your server has a swap file already with the ```swapon``` command.  If your system has less than 1.5GB of memory, you'll want at least a 2GB swap area.  Add a new swapfile with:
-```
-sudo fallocate -l 2G /swapfile
-sudo chown root:root /swapfile
-sudo chmod 0600 /swapfile
-sudo bash -c "echo 'vm.swappiness = 10' >> /etc/sysctl.conf"
-sudo mkswap /swapfile
-sudo swapon /swapfile
-```
-If fallocate doesn’t work, you can instead use:
-```
-sudo dd if=/dev/zero of=/swapfile bs=1024 count=1024288
-```
-Initialize the swapfile to mount automatically on boot:
-```
-sudo echo '/swapfile none swap sw 0 0' >> /etc/fstab
-```
+## Build Targets
 
-### Install all required dependencies
+The repository currently contains source/build logic for:
 
-```sudo apt-get update && sudo apt-get upgrade
-sudo apt-get -y install nano ntp unzip git build-essential libssl-dev \ 
-  libdb-dev libdb++-dev libboost-all-dev libqrencode-dev aptitude
-sudo aptitude -y install miniupnpc libminiupnpc-dev
-```
-If you get an error mentioning lock files, you probably have a desktop or background package update tool running that prevents other apt changes from happening.  You can use the ```lsof``` utility to figure out what program holds the lock and then pause it from running.
+- daemon
+- CLI RPC client
+- transaction utility
+- wallet utility
+- Qt GUI wallet
 
-Pull the source code from github, or download it yourself:
-```
-git clone https://github.com/2X2coin/2x2coin.git
-```
+Depending on platform and build method, output binaries may still use inherited upstream naming until renamed in code and packaging.
 
-### Compiling the software
+## Building
 
-Now you compile the included leveldb:
-```
-cd 2x2coin/src/leveldb
-chmod +x build_detect_platform
-make clean
-make libleveldb.a libmemenv.a
-```
-Return to the source directory, and compile the daemon:
-```
-cd ..
-make -f makefile.unix
-```
-Strip the file to make it smaller, then relocate it:
-```
-strip 2X2d
-sudo cp 2X2d /usr/bin
-```
-Now run the daemon:
-```
-X2d
-```
-It should return an error, telling you to set up config file in a directory. 
+Build instructions are not yet fully refreshed for 996-Coin.
 
-## Create a config file
+Until project-specific instructions are finalized, review the existing platform build files and upstream-style documentation in:
 
-Now we’ll set up the config file. Note that this is case sensitive.
-```
-nano ~/.2X2/2X2.conf
-```
-Add the following, save and exit:
-```
-daemon=1
-server=1
-rpcuser=(username)
-rpcpassword=(strong password)
-```
-Run 2X2d once more and if you did everything correctly, your daemon is now online! 
-## Command summary
-Type:
-```
-YOURCOINd help
-```
-for a full list of commands available. -->
+- `doc/`
+- `depends/`
+- `build_msvc/`
+- `contrib/`
+
+If you are contributing build instructions, prefer documenting:
+
+- tested OS version
+- compiler/toolchain version
+- dependency installation steps
+- exact build commands
+- resulting binary names
+- known warnings or failures
+
+## Configuration
+
+Default configuration naming and datadir conventions may still reflect upstream ancestry in parts of the codebase. These should be verified before release packaging or public distribution.
+
+## Contributing
+
+Contributions should be made through branches and pull requests unless direct branch coordination has been explicitly agreed by the project maintainers.
+
+Recommended contribution flow:
+
+1. create a feature or audit branch
+2. make scoped changes
+3. test locally where possible
+4. open a pull request with a clear summary
+5. include notes on build/test status
+
+## Security
+
+This repository may contain inherited security contact or upstream project references that are no longer valid for 996-Coin. Verify all security/reporting contact paths before publishing releases.
+
+## License
+
+This project inherits from Bitcoin Core lineage and is distributed under the MIT software license unless otherwise noted in specific files.
+
+See `COPYING` for details.
