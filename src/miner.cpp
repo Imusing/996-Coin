@@ -578,7 +578,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman, ChainstateManager* ch
             }
             if (fTryToSync) {
                 fTryToSync = false;
-                if (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 4 ||
+                if (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < MIN_STAKE_PEERS ||
                     ::ChainActive().Tip()->GetBlockTime() < GetTime() - Params().GetConsensus().nPowTargetSpacing ||
                     !::ChainActive().Tip()->HaveTxsDownloaded() ||
                     !::ChainActive().Tip()->IsValid(BLOCK_VALID_TRANSACTIONS)) {
