@@ -203,7 +203,7 @@ static RPCHelpMan generatetoaddress()
             + HelpExampleCli("getnewaddress", "")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
-{
+{   
     return UniValue(UniValue::VARR);
 },
     };
@@ -294,6 +294,8 @@ static RPCHelpMan generateblock()
     block.vtx.insert(block.vtx.end(), txs.begin(), txs.end());
     RegenerateCommitments(block);
 
+
+    uint256 block_hash;
     {
         LOCK(cs_main);
 
@@ -301,9 +303,18 @@ static RPCHelpMan generateblock()
         if (!TestBlockValidity(state, chainparams, block, LookupBlockIndex(block.hashPrevBlock), false, false)) {
             throw JSONRPCError(RPC_VERIFY_ERROR, strprintf("TestBlockValidity failed: %s", state.ToString()));
         }
-    }
+        // Solve block
+        while (!CheckProofOfWork(block.GetHash(), block.nBits, chainparams.GetConsensus())) {
+            ++block.nNonce;
+        }
 
-    uint256 block_hash;
+        // Submit block
+        std::shared_ptr<const CBlock> shared_block = std::make_shared<const CBlock>(block);
+        // ProcessNewBlock(chainparams, shared_block, true, nullptr);
+        EnsureChainman(request.context).ProcessNewBlock(chainparams, shared_block, true, nullptr);
+
+        block_hash = block.GetHash();
+    }
 
     UniValue obj(UniValue::VOBJ);
     obj.pushKV("hash", block_hash.GetHex());

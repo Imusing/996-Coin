@@ -160,3 +160,6 @@ contrib/bitcoin-pos-qt.pro.user
 contrib/996coin-qt.pro.user
 src/univalue/configure~
 configure~
+
+# Mainnet debug testing directory
+testnet/
