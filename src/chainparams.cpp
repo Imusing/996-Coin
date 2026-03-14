@@ -104,11 +104,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x9e;
-        pchMessageStart[1] = 0xf1;
-        pchMessageStart[2] = 0x2c;
-        pchMessageStart[3] = 0x1e;
-        nDefaultPort = 48930;
+        pchMessageStart[0] = 0x99;
+        pchMessageStart[1] = 0x6c;
+        pchMessageStart[2] = 0x01;
+        pchMessageStart[3] = 0x33;
+        nDefaultPort = 49969;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 2;
         m_assumed_chain_state_size = 1;
@@ -132,13 +132,13 @@ public:
         // vSeeds.emplace_back("seed5.bitcoinpos.net");
         // vSeeds.emplace_back("seed6.bitcoinpos.net");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,8);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,53);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,18);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x89, 0xB2, 0x9D};
+        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x89, 0xAD, 0xD2};
 
-        bech32_hrp = "bp";
+        bech32_hrp = "996";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -149,7 +149,7 @@ public:
 
         checkpointData = {
             {
-                { 0, uint256S("0xe5275fd0690dce70276d8556e2a5c37785396ae1550d9f4c81096b5734fc0711") }
+                { 0, uint256S("0x48b00c93e8a20fb6b39f7d99b85066da2820cc3830ca223fc3e04d1a5b0dcbb7") }
             }
         };
 
