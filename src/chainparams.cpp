@@ -66,10 +66,10 @@ public:
         consensus.CSVHeight = 1;
         consensus.SegwitHeight = 1;
         consensus.MinBIP9WarningHeight = consensus.SegwitHeight + consensus.nMinerConfirmationWindow;
-        consensus.BPSRewardMatchStep = 40000;
-        consensus.BPSRewardMatchHeight = 3 * consensus.BPSRewardMatchStep;
-        consensus.BPSDiffAdjHeight = 130000;
-        consensus.BPSColdStakeEnableHeight = 260000;
+        consensus.NNSRewardMatchStep = 40000;
+        consensus.NNSRewardMatchHeight = 3 * consensus.NNSRewardMatchStep;
+        consensus.NNSDiffAdjHeight = 130000;
+        consensus.NNSColdStakeEnableHeight = 260000;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 10 * 3 * 60; // every 10 blocks
@@ -84,7 +84,7 @@ public:
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + 
                                     consensus.nMPoSRewardRecipients + 
                                     COINBASE_MATURITY;
-        consensus.nLastMPoSBlock = consensus.BPSColdStakeEnableHeight;
+        consensus.nLastMPoSBlock = consensus.NNSColdStakeEnableHeight;
         consensus.nEnableHeaderSignatureHeight = 0;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
@@ -180,10 +180,10 @@ public:
         consensus.CSVHeight = 1;
         consensus.SegwitHeight = 1;
         consensus.MinBIP9WarningHeight = consensus.SegwitHeight + consensus.nMinerConfirmationWindow;
-        consensus.BPSRewardMatchStep = 400;
-        consensus.BPSRewardMatchHeight = 3 * consensus.BPSRewardMatchStep;
-        consensus.BPSDiffAdjHeight = 1500;
-        consensus.BPSColdStakeEnableHeight = 2000;
+        consensus.NNSRewardMatchStep = 400;
+        consensus.NNSRewardMatchHeight = 3 * consensus.NNSRewardMatchStep;
+        consensus.NNSDiffAdjHeight = 1500;
+        consensus.NNSColdStakeEnableHeight = 2000;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 10 * 3 * 60; // every 10 blocks
@@ -198,7 +198,7 @@ public:
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + 
                                     consensus.nMPoSRewardRecipients + 
                                     COINBASE_MATURITY;
-        consensus.nLastMPoSBlock = consensus.BPSColdStakeEnableHeight;
+        consensus.nLastMPoSBlock = consensus.NNSColdStakeEnableHeight;
         consensus.nEnableHeaderSignatureHeight = 0;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
@@ -352,7 +352,7 @@ public:
 
         genesis = CreateGenesisBlock(1598918400, 52613770, 0x1e0377ae, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // BPSTODO - generate these
+        // NNSTODO - generate these
         //assert(consensus.hashGenesisBlock == uint256S("0x00000008819873e925422c1ff0f99f7cc9bbb232af63a077a480a3633bee1ef6"));
         //assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
@@ -391,10 +391,10 @@ public:
         consensus.CSVHeight = 432; // CSV activated on regtest (Used in rpc activation tests)
         consensus.SegwitHeight = 0; // SEGWIT is always activated on regtest unless overridden
         consensus.MinBIP9WarningHeight = 0;
-        consensus.BPSRewardMatchStep = 400;
-        consensus.BPSRewardMatchHeight = 3 * consensus.BPSRewardMatchStep;
-        consensus.BPSDiffAdjHeight = 1500;
-        consensus.BPSColdStakeEnableHeight = 2000;
+        consensus.NNSRewardMatchStep = 400;
+        consensus.NNSRewardMatchHeight = 3 * consensus.NNSRewardMatchStep;
+        consensus.NNSDiffAdjHeight = 1500;
+        consensus.NNSColdStakeEnableHeight = 2000;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 10 * 3 * 60; // every 10 blocks
@@ -407,7 +407,7 @@ public:
         consensus.nLastPOWBlock = 0x7fffffff;
         consensus.nMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = 5000;
-        consensus.nLastMPoSBlock = consensus.BPSColdStakeEnableHeight;
+        consensus.nLastMPoSBlock = consensus.NNSColdStakeEnableHeight;
         consensus.nEnableHeaderSignatureHeight = 0;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;

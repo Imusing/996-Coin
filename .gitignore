@@ -9,6 +9,12 @@ src/bitcoin-pos-gui
 src/bitcoin-pos-node
 src/bitcoin-pos-tx
 src/bitcoin-pos-wallet
+src/996coinsd
+src/996coin-cli
+src/996coin-gui
+src/996coin-node
+src/996coin-tx
+src/996coin-wallet
 src/test/fuzz/*
 !src/test/fuzz/*.*
 src/test/test_bitcoin
@@ -94,6 +100,8 @@ Makefile
 !depends/Makefile
 src/qt/bitcoin-pos-qt
 Bitcoin-POS-Qt.app
+src/qt/996coin-qt
+996-Coin-Qt.app
 background.tiff*
 
 # Qt Creator
@@ -149,3 +157,6 @@ osx_volname
 dist/
 *.background.tiff
 contrib/bitcoin-pos-qt.pro.user
+contrib/996coin-qt.pro.user
+src/univalue/configure~
+configure~

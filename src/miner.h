@@ -230,7 +230,7 @@ void RegenerateCommitments(CBlock& block);
 
 #ifdef ENABLE_WALLET
 /** Generate a new block, without valid proof-of-work */
-void StakeBPSs(bool fStake, CWallet *pwallet, CConnman* connman, ChainstateManager* chainman, CTxMemPool* mempool, boost::thread_group*& stakeThread);
+void StakeNNSs(bool fStake, CWallet *pwallet, CConnman* connman, ChainstateManager* chainman, CTxMemPool* mempool, boost::thread_group*& stakeThread);
 #endif
 
 #endif // BITCOIN_MINER_H

@@ -4,6 +4,7 @@
 
 bin_PROGRAMS += qt/bitcoin-pos-qt
 
+
 if BUILD_BITCOIN_GUI
   bin_PROGRAMS += bitcoin-pos-gui
 endif
@@ -318,7 +319,7 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 $(QT_MOC): $(QT_FORMS_H)
 $(qt_libbitcoinqt_a_OBJECTS) $(qt_bitcoin_pos_qt_OBJECTS) $(bitcoin_pos_gui_OBJECTS) : | $(QT_MOC)
 
-# bitcoin-pos-qt and bitcoin-pos-gui binaries #
+# 996coin-qt and 996coin-gui binaries #
 bitcoin_pos_qt_cppflags = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QR_CFLAGS)
 bitcoin_pos_qt_cxxflags = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
@@ -347,9 +348,13 @@ qt_bitcoin_pos_qt_LDADD = $(bitcoin_pos_qt_ldadd)
 qt_bitcoin_pos_qt_LDFLAGS = $(bitcoin_pos_qt_ldflags)
 qt_bitcoin_pos_qt_LIBTOOLFLAGS = $(bitcoin_pos_qt_libtoolflags)
 
+qt_996coin_qt_CPPFLAGS = $(bitcoin_pos_qt_cppflags)
+qt_996coin_qt_CXXFLAGS = $(bitcoin_pos_qt_cxxflags)
 bitcoin_pos_gui_CPPFLAGS = $(bitcoin_pos_qt_cppflags)
 bitcoin_pos_gui_CXXFLAGS = $(bitcoin_pos_qt_cxxflags)
 bitcoin_pos_gui_SOURCES = $(bitcoin_pos_qt_sources)
+
+qt_996coin_qt_SOURCES = $(bitcoin_pos_qt_sources)
 bitcoin_pos_gui_LDADD = $(bitcoin_pos_qt_ldadd)
 bitcoin_pos_gui_LDFLAGS = $(bitcoin_pos_qt_ldflags)
 bitcoin_pos_gui_LIBTOOLFLAGS = $(bitcoin_pos_qt_libtoolflags)
@@ -384,9 +389,9 @@ CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda 
 CLEANFILES += $(CLEAN_QT)
 
 bitcoin_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_bitcoin_pos_qt_OBJECTS) qt/bitcoin-pos-qt$(EXEEXT) $(LIBBITCOINQT)
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_bitcoin_pos_qt_OBJECTS) qt/996coin-qt$(EXEEXT) $(LIBBITCOINQT)
 
-bitcoin_qt : qt/bitcoin-pos-qt$(EXEEXT)
+bitcoin_qt : qt/996coin-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

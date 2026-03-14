@@ -27,13 +27,13 @@
 #define COPYRIGHT_HOLDERS "The %s developers"
 
 /* Copyright holder(s) */
-#define COPYRIGHT_HOLDERS_FINAL "The Bitcoin PoS Core developers"
+#define COPYRIGHT_HOLDERS_FINAL "The 996-Coin Core developers"
 
 /* Replacement for %s in copyright holders string */
-#define COPYRIGHT_HOLDERS_SUBSTITUTION "Bitcoin PoS Core"
+#define COPYRIGHT_HOLDERS_SUBSTITUTION "996-Coin Core"
 
 /* Copyright year */
-#define COPYRIGHT_YEAR 2020
+#define COPYRIGHT_YEAR 2026
 
 /* Define to 1 to enable wallet functions */
 #define ENABLE_WALLET 1
@@ -250,22 +250,22 @@
 #define LT_OBJDIR ".libs/"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "https://github.com/bitcoin/bitcoin/issues"
+#define PACKAGE_BUGREPORT "https://github.com/Imusing/996-Coin/issues"
 
 /* Define to the full name of this package. */
-#define PACKAGE_NAME "Bitcoin PoS Core"
+#define PACKAGE_NAME "996-Coin Core"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Bitcoin PoS Core 0.19.99"
+#define PACKAGE_STRING "996-coin Core 0.1.0"
 
 /* Define to the one symbol short name of this package. */
-#define PACKAGE_TARNAME "bitcoin-pos"
+#define PACKAGE_TARNAME "996-coin"
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL "https://bitcoinpos.net/"
+#define PACKAGE_URL "https://hashcashfaucet.com"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.19.99"
+#define PACKAGE_VERSION "0.1.0"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */

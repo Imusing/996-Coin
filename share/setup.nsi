@@ -1,4 +1,4 @@
-Name "Bitcoin PoS Core (64-bit)"
+Name "996-Coin Core (64-bit)"
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
@@ -10,8 +10,8 @@ SetDateSave off
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define COMPANY "Bitcoin PoS Core project"
-!define URL https://bitcoinpos.net/
+!define COMPANY "996-Coin Core project"
+!define URL https://hashcashfaucet.com/
 
 # MUI Symbol Definitions
 !define MUI_ICON "/mnt/e/996-Coin/share/pixmaps/bitcoin.ico"
@@ -23,9 +23,9 @@ SetDateSave off
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER "Bitcoin PoS Core"
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "996-Coin Core"
 !define MUI_FINISHPAGE_RUN "$WINDIR\explorer.exe"
-!define MUI_FINISHPAGE_RUN_PARAMETERS $INSTDIR\bitcoin-pos-qt
+!define MUI_FINISHPAGE_RUN_PARAMETERS $INSTDIR\996coin-qt
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP "/mnt/e/996-Coin/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
@@ -57,13 +57,13 @@ XPStyle on
 BrandingText " "
 ShowInstDetails show
 VIProductVersion 0.20.99.0
-VIAddVersionKey ProductName "Bitcoin PoS Core"
+VIAddVersionKey ProductName "996-Coin Core"
 VIAddVersionKey ProductVersion "0.20.99"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
 VIAddVersionKey FileVersion "0.20.99"
-VIAddVersionKey FileDescription "Installer for Bitcoin PoS Core"
-VIAddVersionKey LegalCopyright "Copyright (C) 2009-2020 The Bitcoin PoS Core developers"
+VIAddVersionKey FileDescription "Installer for 996-Coin Core"
+VIAddVersionKey LegalCopyright "Copyright (C) 2009-2020 The 996-Coin Core developers"
 InstallDirRegKey HKCU "${REGKEY}" Path
 ShowUninstDetails show
 
@@ -71,14 +71,14 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /mnt/e/996-Coin/release/bitcoin-pos-qt
+    File /mnt/e/996-Coin/release/996coin-qt
     File /oname=COPYING.txt /mnt/e/996-Coin/COPYING
     File /oname=readme.txt /mnt/e/996-Coin/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /mnt/e/996-Coin/release/bitcoin-posd
-    File /mnt/e/996-Coin/release/bitcoin-pos-cli
-    File /mnt/e/996-Coin/release/bitcoin-pos-tx
-    File /mnt/e/996-Coin/release/bitcoin-pos-wallet
+    File /mnt/e/996-Coin/release/996coind
+    File /mnt/e/996-Coin/release/996coin-cli
+    File /mnt/e/996-Coin/release/996coin-tx
+    File /mnt/e/996-Coin/release/996coin-wallet
     SetOutPath $INSTDIR\doc
     File /r /x Makefile* /mnt/e/996-Coin/doc\*.*
     SetOutPath $INSTDIR
@@ -91,8 +91,8 @@ Section -post SEC0001
     WriteUninstaller $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory $SMPROGRAMS\$StartMenuGroup
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\bitcoin-pos-qt
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Bitcoin PoS Core (testnet, 64-bit).lnk" "$INSTDIR\bitcoin-pos-qt" "-testnet" "$INSTDIR\bitcoin-pos-qt" 1
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\996coin-qt
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\996-Coin Core (testnet, 64-bit).lnk" "$INSTDIR\996coin-qt" "-testnet" "$INSTDIR\996coin-qt" 1
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
@@ -105,8 +105,8 @@ Section -post SEC0001
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
     WriteRegStr HKCR "bitcoin" "URL Protocol" ""
     WriteRegStr HKCR "bitcoin" "" "URL:Bitcoin"
-    WriteRegStr HKCR "bitcoin\DefaultIcon" "" $INSTDIR\bitcoin-pos-qt
-    WriteRegStr HKCR "bitcoin\shell\open\command" "" '"$INSTDIR\bitcoin-pos-qt" "%1"'
+    WriteRegStr HKCR "bitcoin\DefaultIcon" "" $INSTDIR\996coin-qt
+    WriteRegStr HKCR "bitcoin\shell\open\command" "" '"$INSTDIR\996coin-qt" "%1"'
 SectionEnd
 
 # Macro for selecting uninstaller sections
@@ -124,7 +124,7 @@ done${UNSECTION_ID}:
 
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-    Delete /REBOOTOK $INSTDIR\bitcoin-pos-qt
+    Delete /REBOOTOK $INSTDIR\996coin-qt
     Delete /REBOOTOK $INSTDIR\COPYING.txt
     Delete /REBOOTOK $INSTDIR\readme.txt
     RMDir /r /REBOOTOK $INSTDIR\daemon
@@ -136,7 +136,7 @@ Section -un.post UNSEC0001
     DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk"
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Bitcoin PoS Core (testnet, 64-bit).lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\996-Coin Core (testnet, 64-bit).lnk"
     Delete /REBOOTOK "$SMSTARTUP\Bitcoin.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log

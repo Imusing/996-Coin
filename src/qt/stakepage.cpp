@@ -135,7 +135,7 @@ void StakePage::setWalletModel(WalletModel *model)
 
     this->sendCoinsDialog->setModel(model);
 
-    // update the display unit, to not use the default ("BPS")
+    // update the display unit, to not use the default ("NNS")
     updateDisplayUnit();
 }
 

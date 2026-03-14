@@ -71,7 +71,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "bitcoin-pos.conf";
+const char * const BITCOIN_CONF_FILENAME = "996coin.conf";
 const char * const BITCOIN_SETTINGS_FILENAME = "settings.json";
 
 ArgsManager gArgs;
@@ -650,12 +650,12 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-    // Windows: C:\Users\Username\AppData\Roaming\Bitcoin-pos
-    // macOS: ~/Library/Application Support/Bitcoin-pos
-    // Unix-like: ~/.bitcoin-pos
+    // Windows: C:\Users\Username\AppData\Roaming\996coin
+    // macOS: ~/Library/Application Support/996coin
+    // Unix-like: ~/.996coin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Bitcoin-pos";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "996coin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -665,10 +665,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // macOS
-    return pathRet / "Library/Application Support/Bitcoin-pos";
+    return pathRet / "Library/Application Support/996coin";
 #else
     // Unix-like
-    return pathRet / ".bitcoin-pos";
+    return pathRet / ".996coin";
 #endif
 #endif
 }

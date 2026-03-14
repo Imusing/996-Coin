@@ -574,7 +574,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     CAmount& nConflictingFees = ws.m_conflicting_fees;
     size_t& nConflictingSize = ws.m_conflicting_size;
 
-    bool fColdStakingActive = ::ChainActive().Height() >= Params().GetConsensus().BPSColdStakeEnableHeight;
+    bool fColdStakingActive = ::ChainActive().Height() >= Params().GetConsensus().NNSColdStakeEnableHeight;
 
     if (!CheckTransaction(tx, state, fColdStakingActive)) {
         return false; // state filled in by CheckTransaction
@@ -1318,7 +1318,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
     CAmount nSubsidy = 50 * COIN;
 
-    int reductions = (nHeight - 1) / consensusParams.BPSRewardMatchStep;
+    int reductions = (nHeight - 1) / consensusParams.NNSRewardMatchStep;
 
     if (reductions <= 3)
     {
@@ -1328,7 +1328,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     else
     {
         nSubsidy >>= 3;
-        reductions = (nHeight - consensusParams.BPSRewardMatchHeight - 1) / consensusParams.nSubsidyHalvingInterval;
+        reductions = (nHeight - consensusParams.NNSRewardMatchHeight - 1) / consensusParams.nSubsidyHalvingInterval;
 
         // Force block reward to zero at some point
         if (reductions >= 64)
@@ -3945,7 +3945,7 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     if (fCheckSig && !CheckBlockSignature(block))
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-signature", "bad proof-of-stake block signature");
 
-    bool fColdStakingActive = ::ChainActive().Height() >= consensusParams.BPSColdStakeEnableHeight;
+    bool fColdStakingActive = ::ChainActive().Height() >= consensusParams.NNSColdStakeEnableHeight;
 
     // Check cold-stake outputs are not abused
     if (fColdStakingActive && block.IsProofOfStake()) {

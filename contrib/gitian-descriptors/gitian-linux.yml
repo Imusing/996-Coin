@@ -1,5 +1,5 @@
 ---
-name: "bitcoin-pos-core-linux-0.21"
+name: "996coin-core-linux-0.21"
 enable_cache: true
 distro: "ubuntu"
 suites:
@@ -28,8 +28,8 @@ packages:
 - "binutils-riscv64-linux-gnu"
 - "g++-8-riscv64-linux-gnu"
 remotes:
-- "url": "https://github.com/bitcoinpos/bitcoinpos.git"
-  "dir": "bitcoin-pos"
+- "url": "https://github.com/Imusing/996-Coin.git"
+  "dir": "996coin"
 files: []
 script: |
   set -e -o pipefail
@@ -117,7 +117,7 @@ script: |
   chmod +x ${WRAP_DIR}/${prog}
   done
 
-  cd bitcoin-pos
+  cd 996coin
   BASEPREFIX="${PWD}/depends"
   # Build dependencies for each host
   for i in $HOSTS; do

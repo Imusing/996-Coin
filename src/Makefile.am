@@ -81,7 +81,10 @@ bin_PROGRAMS =
 noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
-
+996coind_SOURCES = bitcoind.cpp
+996coin_cli_SOURCES = bitcoin-cli.cpp
+996coin_tx_SOURCES = bitcoin-tx.cpp
+996coin_wallet_SOURCES = bitcoin-wallet.cpp
 if BUILD_BITCOIND
   bin_PROGRAMS += bitcoin-posd
 endif

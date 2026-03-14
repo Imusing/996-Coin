@@ -99,7 +99,7 @@ class WalletTest(BitcoinTestFramework):
             assert_equal(self.nodes[0].getbalance("*", 1, True), 50)
         assert_equal(self.nodes[1].getbalance(minconf=0, include_watchonly=True), 50)
 
-        # Send 40 BPS from 0 to 1 and 60 BPS from 1 to 0.
+        # Send 40 NNS from 0 to 1 and 60 NNS from 1 to 0.
         txs = create_transactions(self.nodes[0], self.nodes[1].getnewaddress(), 40, [Decimal('0.01')])
         self.nodes[0].sendrawtransaction(txs[0]['hex'])
         self.nodes[1].sendrawtransaction(txs[0]['hex'])  # sending on both nodes is faster than waiting for propagation

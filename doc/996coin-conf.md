@@ -1,6 +1,6 @@
-# `bitcoin-pos.conf` Configuration File
+# `996coin.conf` Configuration File
 
-The configuration file is used by `bitcoin-posd`, `bitcoin-pos-qt` and `bitcoin-pos-cli`.
+The configuration file is used by `996coind`, `996coin-qt` and `996coin-cli`.
 
 All command-line options (except for `-?`, `-help`, `-version` and `-conf`) may be specified in a configuration file, and all configuration file options (except for `includeconf`) may also be specified on the command line. Command-line options override values set in the configuration file and configuration file options override values set in the GUI.
 
@@ -47,16 +47,16 @@ rpcport=4000
 
 ## Configuration File Path
 
-The configuration file is not automatically created; you can create it using your favorite text editor. By default, the configuration file name is `bitcoin-pos.conf` and it is located in the Bitcoin-pos data directory, but both the Bitcoin-pos data directory and the configuration file path may be changed using the `-datadir` and `-conf` command-line options.
+The configuration file is not automatically created; you can create it using your favorite text editor. By default, the configuration file name is `996coin.conf` and it is located in the 996coin data directory, but both the 996coin data directory and the configuration file path may be changed using the `-datadir` and `-conf` command-line options.
 
-The `includeconf=<file>` option in the `bitcoin-pos.conf` file can be used to include additional configuration files.
+The `includeconf=<file>` option in the `996coin.conf` file can be used to include additional configuration files.
 
 ### Default configuration file locations
 
 Operating System | Data Directory | Example Path
 -- | -- | --
-Windows | `%APPDATA%\Bitcoin-pos\` | `C:\Users\username\AppData\Roaming\Bitcoin-pos\bitcoin-pos.conf`
-Linux | `$HOME/.bitcoin-pos/` | `/home/username/.bitcoin-pos/bitcoin-pos.conf`
-macOS | `$HOME/Library/Application Support/Bitcoin-pos/` | `/Users/username/Library/Application Support/Bitcoin-pos/bitcoin-pos.conf`
+Windows | `%APPDATA%\996coin\` | `C:\Users\username\AppData\Roaming\996coin\996coin.conf`
+Linux | `$HOME/.996coin/` | `/home/username/.996coin/996coin.conf`
+macOS | `$HOME/Library/Application Support/996coin/` | `/Users/username/Library/Application Support/996coin/996coin.conf`
 
-You can find an example bitcoin-pos.conf file in [share/examples/bitcoin-pos.conf](../share/examples/bitcoin-pos.conf).
+You can find an example 996coin.conf file in [share/examples/996coin.conf](../share/examples/996coin.conf).

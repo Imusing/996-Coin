@@ -7,8 +7,8 @@ define(_CLIENT_VERSION_RC, 0)
 define(_CLIENT_VERSION_IS_RELEASE, false)
 define(_COPYRIGHT_YEAR, 2020)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Bitcoin PoS Core]])
-AC_INIT([Bitcoin PoS Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/bitcoinpos/bitcoinpos/issues],[bitcoin],[https://bitcoinpos.net/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[996-Coin Core]])
+AC_INIT([996-Coin Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/Imusing/996-Coin/issues],[bitcoin],[https://hashcashfaucet.com/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -20,11 +20,11 @@ if test "x$PKG_CONFIG" = x; then
   AC_MSG_ERROR([pkg-config not found])
 fi
 
-BITCOIN_DAEMON_NAME=bitcoin-posd
-BITCOIN_GUI_NAME=bitcoin-pos-qt
-BITCOIN_CLI_NAME=bitcoin-pos-cli
-BITCOIN_TX_NAME=bitcoin-pos-tx
-BITCOIN_WALLET_TOOL_NAME=bitcoin-pos-wallet
+BITCOIN_DAEMON_NAME=996coind
+BITCOIN_GUI_NAME=996coin-qt
+BITCOIN_CLI_NAME=996coin-cli
+BITCOIN_TX_NAME=996coin-tx
+BITCOIN_WALLET_TOOL_NAME=996coin-wallet
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -554,25 +554,25 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build bitcoin-pos-cli bitcoin-pos-tx bitcoin-pos-wallet (default=yes)])],
+  [build 996coin-cli 996coin-tx 996coin-wallet (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
 AC_ARG_ENABLE([util-cli],
   [AS_HELP_STRING([--enable-util-cli],
-  [build bitcoin-pos-cli])],
+  [build 996coin-cli])],
   [build_bitcoin_cli=$enableval],
   [build_bitcoin_cli=$build_bitcoin_utils])
 
 AC_ARG_ENABLE([util-tx],
   [AS_HELP_STRING([--enable-util-tx],
-  [build bitcoin-pos-tx])],
+  [build 996coin-tx])],
   [build_bitcoin_tx=$enableval],
   [build_bitcoin_tx=$build_bitcoin_utils])
 
 AC_ARG_ENABLE([util-wallet],
   [AS_HELP_STRING([--enable-util-wallet],
-  [build bitcoin-pos-wallet])],
+  [build 996coin-wallet])],
   [build_bitcoin_wallet=$enableval],
   [build_bitcoin_wallet=$build_bitcoin_utils])
 
@@ -584,7 +584,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build bitcoin-posd daemon (default=yes)])],
+  [build 996coind daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 

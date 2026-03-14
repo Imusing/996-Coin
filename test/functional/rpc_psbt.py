@@ -90,7 +90,7 @@ class PSBTTest(BitcoinTestFramework):
         assert_equal(decoded_psbt["tx"]["vout"][changepos]["scriptPubKey"]["type"], expected_type)
 
     def run_test(self):
-        # Create and fund a raw tx for sending 10 BPS
+        # Create and fund a raw tx for sending 10 NNS
         psbtx1 = self.nodes[0].walletcreatefundedpsbt([], {self.nodes[2].getnewaddress():10})['psbt']
 
         # If inputs are specified, do not automatically add more:

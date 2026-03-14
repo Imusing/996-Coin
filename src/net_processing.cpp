@@ -2409,7 +2409,7 @@ static void ProcessGetCFCheckPt(CNode& peer, CDataStream& vRecv, const CChainPar
 static bool IsValidNodeProtocolVersion(CNode& pfrom, const int nVersion, const CChainParams& chain_params)
 {
     int minPeerProtoVersion;
-    if (::ChainActive().Height() < chain_params.GetConsensus().BPSColdStakeEnableHeight) {
+    if (::ChainActive().Height() < chain_params.GetConsensus().NNSColdStakeEnableHeight) {
         minPeerProtoVersion = OLD_MIN_PEER_PROTO_VERSION;
     } else {
         minPeerProtoVersion = MIN_PEER_PROTO_VERSION;

@@ -11,7 +11,7 @@ with each other, with the help of a P2P network to check for double-spending.
 
 Setup
 -----
-Unpack the files into a directory and run bitcoin-pos-qt.exe.
+Unpack the files into a directory and run 996coin-qt.exe.
 
 BitcoinPoS Core is the original BitcoinPoS client and it builds the backbone of the network.
 However, it downloads and stores the entire history of BitcoinPoS transactions;

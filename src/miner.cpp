@@ -541,7 +541,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman, ChainstateManager* ch
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
 
     // Make this thread recognisable as the mining thread
-    std::string threadName = "bpsstake";
+    std::string threadName = "NNSstake";
     if (pwallet && pwallet->GetName() != "")
     {
         threadName = threadName + "-" + pwallet->GetName();
@@ -697,7 +697,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman, ChainstateManager* ch
     }
 }
 
-void StakeBPSs(bool fStake, CWallet *pwallet, CConnman* connman, ChainstateManager* chainman, CTxMemPool* mempool, boost::thread_group*& stakeThread)
+void StakeNNSs(bool fStake, CWallet *pwallet, CConnman* connman, ChainstateManager* chainman, CTxMemPool* mempool, boost::thread_group*& stakeThread)
 {
     if (stakeThread != nullptr)
     {

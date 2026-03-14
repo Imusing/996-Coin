@@ -547,8 +547,8 @@ UniValue CreateColdStakeDelegation(const UniValue& params, CWallet* const pwalle
 {
     LOCK2(cs_main, pwallet->cs_wallet);
 
-    if (pwallet->GetLastBlockHeight() < Params().GetConsensus().BPSColdStakeEnableHeight) {
-        throw JSONRPCError(RPC_WALLET_ERROR, strprintf("Cold Staking is enabled at block %d\n", Params().GetConsensus().BPSColdStakeEnableHeight));
+    if (pwallet->GetLastBlockHeight() < Params().GetConsensus().NNSColdStakeEnableHeight) {
+        throw JSONRPCError(RPC_WALLET_ERROR, strprintf("Cold Staking is enabled at block %d\n", Params().GetConsensus().NNSColdStakeEnableHeight));
     }
 
     // Get Staking Address

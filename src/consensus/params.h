@@ -66,16 +66,16 @@ struct Params {
     int MinBIP9WarningHeight;
     /** The size of the step going towards reward matching - rewards from
      * both chains, bitcoin and bitcoin pos are coming in sync with steps of this size. */
-    int BPSRewardMatchStep;
-    /** Block height at which BPSRewardMatch becomes active - rewards from
+    int NNSRewardMatchStep;
+    /** Block height at which NNSRewardMatch becomes active - rewards from
      * both chains, bitcoin and bitcoin pos are in sync as of this height. */
-    int BPSRewardMatchHeight;
-    /** Block height at which BPSDiffAdj becomes active - difficulty adjustment
+    int NNSRewardMatchHeight;
+    /** Block height at which NNSDiffAdj becomes active - difficulty adjustment
      * formula is changed so that block times are more reliable. */
-    int BPSDiffAdjHeight;
-    /** Block height at which BPSColdStakeEnable becomes active - cold staking
+    int NNSDiffAdjHeight;
+    /** Block height at which NNSColdStakeEnable becomes active - cold staking
      * will be enabled, allowing wallets to use delegations for staking. */
-    int BPSColdStakeEnableHeight;
+    int NNSColdStakeEnableHeight;
     /**
      * Minimum blocks including miner confirmation of the total of 2016 blocks in a retargeting period,
      * (nPowTargetTimespan / nPowTargetSpacing) which is also used for BIP9 deployments.
@@ -93,7 +93,7 @@ struct Params {
     int64_t DifficultyAdjustmentInterval(const int height) const
     {
         int64_t targetTimeSpan;
-        if (height < BPSDiffAdjHeight) {
+        if (height < NNSDiffAdjHeight) {
             targetTimeSpan = nPowTargetSpacing;
         } else {
             targetTimeSpan = nPowTargetTimespan;
