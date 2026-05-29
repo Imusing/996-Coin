@@ -127,6 +127,9 @@ public:
         // release ASAP to avoid it where possible.
         vSeeds.emplace_back("80.190.82.162");
         vSeeds.emplace_back("194.238.30.30");
+        vSeeds.emplace_back("seed1.996coin.com");
+        vSeeds.emplace_back("seed2.996coin.com");
+        vSeeds.emplace_back("seed3.996coin.com");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,53);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,18);
@@ -145,7 +148,8 @@ public:
 
         checkpointData = {
             {
-                { 0, uint256S("0x48b00c93e8a20fb6b39f7d99b85066da2820cc3830ca223fc3e04d1a5b0dcbb7") }
+                { 0, uint256S("0x48b00c93e8a20fb6b39f7d99b85066da2820cc3830ca223fc3e04d1a5b0dcbb7") },
+                { 30000, uint256S("0x7a0460f38061e55ec6da2669baf8eadd1321dd95474da75c0dfc7eab6df9b981") },
             }
         };
 
