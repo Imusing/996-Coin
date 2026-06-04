@@ -164,3 +164,9 @@ configure~
 # Mainnet debug testing directory
 testnet/
 src/obj/build.h
+src/coin996-cli
+src/coin996-tx
+src/coin996-wallet
+src/coin996d
+src/qt/coin996-qt
+share/setup.nsi

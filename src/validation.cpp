@@ -1306,6 +1306,12 @@ bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const FlatFilePos& pos, c
     return true;
 }
 
+long long GetHighestBlockHeightFromPeers()
+{
+    LOCK(cs_main);
+    return pindexBestHeader ? pindexBestHeader->nHeight : 1;
+}
+
 bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const CBlockIndex* pindex, const CMessageHeader::MessageStartChars& message_start)
 {
     FlatFilePos block_pos;
@@ -2858,7 +2864,7 @@ static void UpdateTip(CTxMemPool& mempool, const CBlockIndex* pindexNew, const C
       pindexNew->GetBlockHash().ToString(), pindexNew->nHeight, pindexNew->nVersion,
       log(pindexNew->nChainWork.getdouble())/log(2.0), (unsigned long)pindexNew->nChainTx,
       FormatISO8601DateTime(pindexNew->GetBlockTime()),
-      GuessVerificationProgress(chainParams.TxData(), pindexNew), ::ChainstateActive().CoinsTip().DynamicMemoryUsage() * (1.0 / (1<<20)), ::ChainstateActive().CoinsTip().GetCacheSize(),
+      GuessVerificationProgress(chainParams.TxData(), pindexNew, GetHighestBlockHeightFromPeers()), ::ChainstateActive().CoinsTip().DynamicMemoryUsage() * (1.0 / (1<<20)), ::ChainstateActive().CoinsTip().GetCacheSize(),
       !warning_messages.empty() ? strprintf(" warning='%s'", warning_messages.original) : "");
 
     if (num_unexpected_version > 0) {
@@ -5009,7 +5015,7 @@ bool CChainState::LoadChainTip(const CChainParams& chainparams)
         tip->GetBlockHash().ToString(),
         m_chain.Height(),
         FormatISO8601DateTime(tip->GetBlockTime()),
-        GuessVerificationProgress(chainparams.TxData(), tip));
+        GuessVerificationProgress(chainparams.TxData(), tip, GetHighestBlockHeightFromPeers()));
     return true;
 }
 
@@ -6003,21 +6009,20 @@ bool DumpMempool(const CTxMemPool& pool)
 
 //! Guess how far we are in the verification process at the given block index
 //! require cs_main if pindex has not been validated yet (because nChainTx might be unset)
-double GuessVerificationProgress(const ChainTxData& data, const CBlockIndex *pindex) {
+double GuessVerificationProgress(const ChainTxData& data, const CBlockIndex *pindex, long long bestHeaderHeight)
+{
+    if (bestHeaderHeight < 2)
+    {
+        bestHeaderHeight = GetHighestBlockHeightFromPeers();
+    }
     if (pindex == nullptr)
         return 0.0;
 
     int64_t nNow = time(nullptr);
 
-    double fTxTotal;
+    // just do block-based, so if we synced 1000 out of 10000 blocks, we're 10% done
 
-    if (pindex->nChainTx <= data.nTxCount) {
-        fTxTotal = data.nTxCount + (nNow - data.nTime) * data.dTxRate;
-    } else {
-        fTxTotal = pindex->nChainTx + (nNow - pindex->GetBlockTime()) * data.dTxRate;
-    }
-
-    return std::min<double>(pindex->nChainTx / fTxTotal, 1.0);
+    return std::min<double>(1.0, double(pindex->nHeight + 1) / (bestHeaderHeight + 1));
 }
 
 bool RemoveStateBlockIndex(CBlockIndex *pindex)

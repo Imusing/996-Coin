@@ -193,7 +193,7 @@ public:
             LOCK(::cs_main);
             tip = ::ChainActive().Tip();
         }
-        return GuessVerificationProgress(Params().TxData(), tip);
+        return GuessVerificationProgress(Params().TxData(), tip, tip ? tip->nHeight : 0);
     }
     bool isInitialBlockDownload() override { return ::ChainstateActive().IsInitialBlockDownload(); }
     bool getReindex() override { return ::fReindex; }

@@ -253,7 +253,7 @@ public:
     double guessVerificationProgress(const uint256& block_hash) override
     {
         LOCK(cs_main);
-        return GuessVerificationProgress(Params().TxData(), LookupBlockIndex(block_hash));
+        return GuessVerificationProgress(Params().TxData(), LookupBlockIndex(block_hash), ChainActive().Tip() ? ChainActive().Tip()->nHeight : 0);
     }
     bool hasBlocks(const uint256& block_hash, int min_height, Optional<int> max_height) override
     {

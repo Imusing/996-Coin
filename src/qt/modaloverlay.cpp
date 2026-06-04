@@ -103,13 +103,18 @@ void ModalOverlay::tipUpdate(int count, const QDateTime& blockDate, double nVeri
         double remainingProgress = 1.0 - nVerificationProgress;
         for (int i = 1; i < blockProcessTime.size(); i++) {
             QPair<qint64, double> sample = blockProcessTime[i];
-
-            // take first sample after 500 seconds or last available one
-            if (sample.first < (currentDate.toMSecsSinceEpoch() - 500 * 1000) || i == blockProcessTime.size() - 1) {
-                progressDelta = blockProcessTime[0].second - sample.second;
+            if (sample.second <= nVerificationProgress) {
+                progressDelta = nVerificationProgress - sample.second;
                 timeDelta = blockProcessTime[0].first - sample.first;
-                progressPerHour = progressDelta / (double) timeDelta * 1000 * 3600;
-                remainingMSecs = (progressDelta > 0) ? remainingProgress / progressDelta * timeDelta : -1;
+                if (timeDelta > 0) {
+                    progressPerHour = progressDelta / timeDelta * 3600 * 1000;
+                    if (progressPerHour > 0) {
+                        remainingMSecs = remainingProgress / progressPerHour * 3600 * 1000;
+                    }
+                    else {
+                        remainingMSecs = -1;
+                    }
+                }
                 break;
             }
         }
