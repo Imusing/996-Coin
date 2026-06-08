@@ -2459,6 +2459,7 @@ void PeerManager::ProcessMessage(CNode& pfrom, const std::string& msg_type, CDat
         uint64_t nServiceInt;
         ServiceFlags nServices;
         int nVersion;
+        std::string strSubVer;
         std::string cleanSubVer;
         int nStartingHeight = -1;
         bool fRelay = true;
@@ -2481,8 +2482,8 @@ void PeerManager::ProcessMessage(CNode& pfrom, const std::string& msg_type, CDat
 
         if (!vRecv.empty())
             vRecv >> addrFrom >> nNonce;
+        
         if (!vRecv.empty()) {
-            std::string strSubVer;
             vRecv >> LIMITED_STRING(strSubVer, MAX_SUBVERSION_LENGTH);
             cleanSubVer = SanitizeString(strSubVer);
         }
@@ -2498,10 +2499,11 @@ void PeerManager::ProcessMessage(CNode& pfrom, const std::string& msg_type, CDat
             pfrom.fDisconnect = true;
             return;
         }
-        if (cleanSubVer.find(":1.0.0") != std::string::npos ||
-            cleanSubVer.find("/1.0.0") != std::string::npos) {
-            LogPrintf("Disconnecting old 996-Coin peer: %s peer=%d\n",
-                    cleanSubVer, pfrom.GetId());
+        if (strSubVer.find(":1.0.0") != std::string::npos ||
+            strSubVer.find("/1.0.0") != std::string::npos ||
+            cleanSubVer.find("1.0.0") != std::string::npos) {
+            LogPrintf("Disconnecting old 996-Coin peer: raw='%s' clean='%s' peer=%d\n",
+                strSubVer, cleanSubVer, pfrom.GetId());
             pfrom.fDisconnect = true;
             return;
         }
